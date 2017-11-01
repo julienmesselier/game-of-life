@@ -32,10 +32,12 @@ class TestGameOfLife(TestCase):
 #        self.assertEqual(1, iterate(world)[1, 1])
 
     def test_neighbors_computation(self):
-        world = np.array([[1, 0, 0],
-                          [1, 1, 1],
-                          [0, 0, 0]])
+        world = np.array([[0, 0, 0, 0, 0, 0],
+                          [0, 1, 0, 1, 1, 0],
+                          [0, 0, 1, 1, 1, 0],
+                          [0, 0, 0, 0, 0, 0]])
 
-        expected_neighbors = np.array([[3]])
+        expected_neighbors = np.array([[1, 4, 4, 3],
+                                      [2, 3, 4, 3]])
 
         np.testing.assert_array_equal(expected_neighbors, compute_number_of_neighbours(world))
