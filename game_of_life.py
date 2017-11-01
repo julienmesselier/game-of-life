@@ -8,6 +8,9 @@ def compute_number_of_neighbours(world):
 
 
 def iterate(world):
-    world *= 0
+    neighbours = compute_number_of_neighbours(world)
+    death = ((neighbours < 2) | (neighbours > 3)) & (world[1:-1, 1:-1] == 1)
+    birth = (neighbours == 3) & (world[1:-1, 1:-1] == 0)
+    world[1:-1, 1:-1][death] = 0
+    world[1:-1, 1:-1][birth] = 1
     world[0, :] = world[-1, :] = world[:, 0] = world[:, -1] = 0
-    return world
